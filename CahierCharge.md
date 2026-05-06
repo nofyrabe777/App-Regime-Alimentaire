@@ -1,39 +1,46 @@
 # Cahier de charge 
 
-## Entité : 
+## Entité : front office
 1. utilisateur:
     * nom
     * email
     * genre
     * mot de passe (d'acces si déja inscrit)
   <br>
-Table a part entière:*information de santé de l'utilisateur :*
-* taille (m)
-* poids (kg)
-* solde (l'argent que l'utilisateur dédie pour son régime)
-* code (code de recharge)
-* est_gold (boolean true (remise) false pour utilisateur simple)
 
-2. Objectif (masse):
+2. profile santé:
+    * taille (m)
+    * poids (kg)
+    * solde (l'argent que l'utilisateur dédie pour son régime)
+    * est_gold (boolean true (remise) false pour utilisateur simple)
+
+3. Objectif (masse):
     * augmenter
     * réduire
     * Atteindre l'imc idéal
     * poids idéale
   
-3. Régime
+4. Régime
     * Nom
     * prix(en fonction de la durée)
-    * composition
+    * % viande
+    * % volaille
+    * % poisson
     * impacte sur le poids actuelle
 
 
-4. activité sportive 
+5. activité sportive 
     * nom des activité
     * fréquence par jour
     * type_objectif(perte ou gain de masse)
 
-5. remise
+
+## Entité : back office
+1. remise
     * pourcentage remise
+    * prix option gold(a payer en une seule fois)0
+
+2. 
 
 
 ## Logique
