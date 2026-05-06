@@ -12,14 +12,11 @@
 2. profile santé:
     * taille (m)
     * poids (kg)
-    * solde (l'argent que l'utilisateur dédie pour son régime)
-    * est_gold (boolean true (remise) false pour utilisateur simple)
 
 3. Objectif (masse):
-    * augmenter
-    * réduire
-    * Atteindre l'imc idéal
-    * poids idéale
+    * prendre de la masse
+    * perte de masse
+    * Atteindre l'imc idéal (poids idéale)
   
 4. Régime
     * Nom
@@ -42,7 +39,11 @@
     * dateFin
     * evolution de poids
     * montant payer
-
+  
+7. wallet
+    * solde (l'argent que l'utilisateur dédie pour son régime)
+    * est_gold (boolean true (remise) false pour utilisateur simple)
+  
 ## Entité : back office
 1. remise
     * pourcentage remise
@@ -63,8 +64,18 @@
 ---
     IMC : masse_utilisateur / taille
 ---
+3. pour la perte de poids (masse_souhaité < masse_utilisateur)
+4. pour la prise de poids (masse_souhaité > masse_utilisateur)
+5. pour le calcule de l'IMC idéale : 
+---
+    facteur poids idéale selon OMC : 18,5 et 24,9
+
+    masse_(-): 18.5 * (taille)^2
+    masse_(+): 24.9 * (taille)^2
+    ->la masse idéale pour une personne en fonction du genre se trouve entre masse_(-) et masse_(+)
 
 
+    taille_homme: taille_homme-100-((Taille(cm)-150)/4)
 
-## Besoin coté interface 
-1. un graphique 
+    taille_femme: taille_femme-100-((Taille(cm) - 150)/2.5)
+---
