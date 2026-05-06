@@ -51,7 +51,7 @@
 2. code recharge
     * valeur(texte du code) 
     * montant
-    * est_utilisé(unique)
+    * est_utilisé(unique)  
 
 
 
