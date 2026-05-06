@@ -6,7 +6,8 @@
     * email
     * genre
     * mot de passe (d'acces si déja inscrit)
-  <br>
+
+<br>
 
 2. profile santé:
     * taille (m)
@@ -33,21 +34,37 @@
     * nom des activité
     * fréquence par jour
     * type_objectif(perte ou gain de masse)
-
+  
+6. suivi de poids(utilisateur - administrateur)
+    * id_utilisateur
+    * id_regime
+    * dateDebut
+    * dateFin
+    * evolution de poids
+    * montant payer
 
 ## Entité : back office
 1. remise
     * pourcentage remise
     * prix option gold(a payer en une seule fois)0
 
-2. 
+2. code recharge
+    * valeur(texte du code) 
+    * montant
+    * est_utilisé(unique)
+
+
 
 
 ## Logique
 1. le calcul d'IMC permet l'affichage des options en fonction de l'imc et en fonction du choix de l'utilisateur: <br>
     il sera proposé immédiatement le régime approprié : sport, régime alimentaire, durée du programme 
 2. dans le cas ou il choisi l'option prénium l'utilisateur aura droit a une remise de X% sur tout les régimes et il doit payer en une seule fois
-3. 
+---
+    IMC : masse_utilisateur / taille
+---
+
+
 
 ## Besoin coté interface 
 1. un graphique 
