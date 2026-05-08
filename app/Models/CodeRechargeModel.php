@@ -10,6 +10,14 @@ class CodeRechargeModel extends Model{
     protected $allowedFields = [
         'valeur_code',
         'montant',
-        'est_utilise'
+        'est_utilise'//unique pour la database sql mais true pour la version boolean du programme
     ];
+
+    public function registerCodeRecharge($data){
+        return $this->insert($data);
+    }
+    //lors de la recharge
+    public function addMoney($id,$money){
+        return $this->update($id,$money);
+    }
 }

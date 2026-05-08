@@ -17,5 +17,8 @@ class SuiviPoidsModel extends Model{
         'montant_paye'
     ];
 
+    public function registerEvolution($data){
+        return $this->insert($data);
+    }
     
 }
