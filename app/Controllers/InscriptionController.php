@@ -20,13 +20,16 @@ class InscriptionController extends Controller{
         $userId = $UtilistaterModel->register($data);
         if($userId){
             $walletModel = new WalletModel();
+            
             $walletModel->insertfirsaccount([
-                'id_utilisateur' => $userId,
-                'solde' =>0,
+                'id_utilisateur' => $userId, 
+                'solde' => 0,
                 'est_gold' => false
             ]);
-            session()->set('new_UserID',$userId);
-            return redirect()->to('/inscriptionIdentite/inscriptionIdentite2');
+            
+            session()->set('new_UserID', $userId); 
+            
+            return redirect()->to('/inscriptionIdentite');
         }
     }
 
@@ -37,8 +40,27 @@ class InscriptionController extends Controller{
             'taille' => $this->request->getPost('taille'),
             'poids' => $this->request->getPost('poids')
         ];
-        $ProfileSanteModel->registerEtat($data);
+        if($ProfileSanteModel->registerEtat($data)){
+            session()->set('LoginID',session()->get('new_UserID'));
+            return redirect()->to('/dashboard');
+        }
     }
 
-   
+    public function log_in(){
+        $UtilisateurModel = new UtilisateurModel();
+        $data=[
+            'email' => $this->request->getPost('email'),
+            'mot_de_passe' => $this->request->getPost('mot_de_passe')
+        ];
+        $user = $UtilisateurModel->login($data['email'],$data['mot_de_passe']);
+        if($user){
+            session()->set('LoginID',$user['id_utilisateur']);
+            return redirect()->to('/dashboard');
+        }
+    }
+
+    public function log_out(){
+        session_destroy();
+        return redirect()->to('/inscription');
+    }
 }

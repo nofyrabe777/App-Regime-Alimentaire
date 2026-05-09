@@ -9,7 +9,7 @@ class RegimeModel extends Model{
     protected $primaryKey = 'id_regime';
     protected $allowedFields = [
         'nom_regime',
-        'prix_journalier',
+        'prix_journalier', 
         'pourcentage_viande',
         'pourcentage_volaille',
         'pourcentage_poisson',

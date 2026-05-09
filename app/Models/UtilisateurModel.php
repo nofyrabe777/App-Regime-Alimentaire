@@ -16,9 +16,6 @@ class UtilisateurModel extends Model{
     public function register($data){
         return $this->insert($data);
     }
-    public function suppress($id){
-        return $this->delete($id);
-    }
     public function login($email,$mot_de_passe){
         $user = $this->where('email',$email)->first();
         if($user){
@@ -28,8 +25,12 @@ class UtilisateurModel extends Model{
         }
         return null;
     }
+    
     public function modif($id,$data){
         return $this->update($id,$data);
+    }
+    public function suppress($id){
+        return $this->delete($id);
     }
 
 }

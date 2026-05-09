@@ -17,6 +17,7 @@ class ActiviteModel extends Model{
 
     public function getAllActivity(){
         return $this->findAll();
-    }
+    } 
+    
     
 }
