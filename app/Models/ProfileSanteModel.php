@@ -9,7 +9,8 @@ class ProfileSanteModel extends Model{
     protected $allowedFields = [
         'id_utilisateur',
         'taille',
-        'poids' 
+        'poids',
+        'age' 
     ];
 
     public function registerEtat($data){

@@ -18,6 +18,7 @@ CREATE TABLE profil_sante (
     id_utilisateur INT,
     taille DECIMAL(5,2) NOT NULL,
     poids DECIMAL(5,2) NOT NULL,
+    age INT NOT NULL,
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
@@ -30,6 +31,9 @@ CREATE TABLE wallet (
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+
+
+
 -- 4. Catalogue des Régimes
 CREATE TABLE regime (
     id_regime INT AUTO_INCREMENT PRIMARY KEY,
@@ -38,7 +42,7 @@ CREATE TABLE regime (
     pourcentage_viande INT NOT NULL,
     pourcentage_volaille INT NOT NULL,
     pourcentage_poisson INT NOT NULL,
-    impact_poids_hebdo DECIMAL(5,2) NOT NULL,
+    apport_calorique DECIMAL(7,2) NOT NULL,
     CHECK (pourcentage_viande + pourcentage_volaille + pourcentage_poisson = 100)
 ) ENGINE=InnoDB;
 
@@ -51,8 +55,12 @@ CREATE TABLE activites (
     date_activite DATE,
     frequence_jour INT NOT NULL,
     type_objectif VARCHAR(20) NOT NULL,
+    depense_calorique DECIMAL(5,2) NOT NULL,
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id_utilisateur)
 ) ENGINE=InnoDB;
+
+
+
 
 -- 6. Suivi / Historique
 CREATE TABLE suivi_poids (
