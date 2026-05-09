@@ -12,7 +12,7 @@ class ActiviteModel extends Model{
         'duree',
         'date_activite',
         'frequence_jour',
-        'type_objetif',
+        'type_objectif',
         'depense_calorique'
     ];
 

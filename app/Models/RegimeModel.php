@@ -13,6 +13,7 @@ class RegimeModel extends Model{
         'pourcentage_viande',
         'pourcentage_volaille',
         'pourcentage_poisson',
+        'impact_hebdo',
         'apport_calorique'
     ];
 

@@ -42,6 +42,7 @@ CREATE TABLE regime (
     pourcentage_viande INT NOT NULL,
     pourcentage_volaille INT NOT NULL,
     pourcentage_poisson INT NOT NULL,
+    impact_hebdo DECIMAL(5,2) NOT NULL,
     apport_calorique DECIMAL(7,2) NOT NULL,
     CHECK (pourcentage_viande + pourcentage_volaille + pourcentage_poisson = 100)
 ) ENGINE=InnoDB;

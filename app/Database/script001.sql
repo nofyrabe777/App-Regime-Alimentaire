@@ -1,87 +1,27 @@
--- Création de la base
-CREATE DATABASE regime_db;
 USE regime_db;
 
--- ==========================================
--- ENTITÉS : FRONT OFFICE
--- ==========================================
+-- Insertion des Régimes (Impact négatif = Perte, Positif = Gain)
+INSERT INTO regime (nom_regime, prix_journalier, pourcentage_viande, pourcentage_volaille, pourcentage_poisson, impact_hebdo, apport_calorique) VALUES
+('Régime Méditerranéen', 15000, 10, 30, 60, -0.80, 1800.00),
+('Régime Hyperprotéiné', 25000, 50, 30, 20, -1.50, 1500.00),
+('Cure de Masse Alpha', 35000, 40, 40, 20, 1.20, 3200.00),
+-- Pour le végétarien, on met 100% en poisson (ou on peut imaginer des substituts végétaux comptés ainsi) pour valider le CHECK
+('Végétarien Équilibré', 12000, 0, 0, 100, -0.50, 2000.00), 
+('Régime Océanique', 22000, 0, 20, 80, -1.00, 1600.00);
 
--- 1. Identité (Page d'inscription 1)
-CREATE TABLE utilisateur (
-    id_utilisateur INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    genre CHAR(1) NOT NULL, -- 'M' ou 'F'
-    mot_de_passe VARCHAR(255) NOT NULL -- Pour le login
-) ENGINE=InnoDB;
+-- Insertion des Activités (Catalogue général : id_utilisateur est NULL)
+INSERT INTO activites (id_utilisateur, type_activite, frequence_jour, type_objectif, depense_calorique) VALUES
+(NULL, 'Course à pied (Intense)', 1, 'perte', 600.00),
+(NULL, 'Marche rapide', 1, 'perte', 250.00),
+(NULL, 'Natation', 1, 'perte', 450.00),
+(NULL, 'Musculation (Prise de masse)', 1, 'gain', 300.00),
+(NULL, 'Yoga & Étirements', 1, 'maintien', 150.00);
 
--- 2. Profil Santé (Page d'inscription 2)
-CREATE TABLE profil_sante (
-    id_profil INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilisateur INT,
-    taille DECIMAL(5,2) NOT NULL, -- Taille en mètres
-    poids DECIMAL(5,2) NOT NULL, -- Poids en kg
-    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE CASCADE
-) ENGINE=InnoDB;
+-- Codes de Recharge (Pour tes tests Wallet)
+INSERT INTO code_recharge (valeur_code, montant, est_utilise) VALUES
+('RECH-100K', 100000.00, FALSE),
+('RECH-50K', 50000.00, FALSE),
+('GOLD-PROMO', 200000.00, FALSE);
 
--- 3. Portefeuille (Gestion Gold et Argent)
-CREATE TABLE wallet (
-    id_wallet INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilisateur INT,
-    solde DECIMAL(10,2) DEFAULT 0.00, -- Porte-monnaie
-    est_gold BOOLEAN DEFAULT FALSE, -- Option Gold à 15% de remise
-    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur) ON DELETE CASCADE
-) ENGINE=InnoDB;
-
--- 4. Catalogue des Régimes
-CREATE TABLE regime (
-    id_regime INT AUTO_INCREMENT PRIMARY KEY,
-    nom_regime VARCHAR(100) NOT NULL,
-    prix_journalier DECIMAL(10,2) NOT NULL, -- Le prix varie selon la durée
-    pourcentage_viande INT NOT NULL, --
-    pourcentage_volaille INT NOT NULL, --
-    pourcentage_poisson INT NOT NULL, --
-    impact_poids_hebdo DECIMAL(5,2) NOT NULL, -- Ex: -1.0 pour perdre 1kg/semaine
-    CHECK (pourcentage_viande + pourcentage_volaille + pourcentage_poisson = 100)
-) ENGINE=InnoDB;
-
--- 5. Catalogue des Sports
-CREATE TABLE activite_sportive (
-    id_activite INT AUTO_INCREMENT PRIMARY KEY,
-    nom_activite VARCHAR(100) NOT NULL,
-    frequence_jour INT NOT NULL, --
-    type_objectif VARCHAR(20) NOT NULL -- 'perte', 'gain', ou 'maintien'
-) ENGINE=InnoDB;
-
--- 6. Suivi / Historique (Lien Utilisateur <-> Programme)
-CREATE TABLE suivi_poids (
-    id_suivi INT AUTO_INCREMENT PRIMARY KEY,
-    id_utilisateur INT,
-    id_regime INT,
-    date_debut DATE NOT NULL,
-    date_fin DATE NOT NULL, -- Calculée selon l'objectif
-    poids_depart DECIMAL(5,2) NOT NULL,
-    poids_objectif DECIMAL(5,2) NOT NULL,
-    montant_paye DECIMAL(10,2) NOT NULL, -- Prix après remise Gold éventuelle
-    FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur),
-    FOREIGN KEY (id_regime) REFERENCES regime(id_regime)
-) ENGINE=InnoDB;
-
--- ==========================================
--- ENTITÉS : BACK OFFICE
--- ==========================================
-
--- 7. Codes de Recharge
-CREATE TABLE code_recharge (
-    id_code INT AUTO_INCREMENT PRIMARY KEY,
-    valeur_code VARCHAR(20) UNIQUE NOT NULL, -- Texte secret
-    montant DECIMAL(10,2) NOT NULL,
-    est_utilise BOOLEAN DEFAULT FALSE -- Un code est unique
-) ENGINE=InnoDB;
-
--- 8. Paramètres Système (Remises et Prix Gold)
-CREATE TABLE configuration_remise (
-    id_config INT AUTO_INCREMENT PRIMARY KEY,
-    pourcentage_remise DECIMAL(5,2) DEFAULT 15.00, -- Fixé à 15%
-    prix_option_gold DECIMAL(10,2) NOT NULL -- Prix de l'accès Gold
-) ENGINE=InnoDB;
+-- Config Admin
+INSERT INTO configuration_remise (pourcentage_remise, prix_option_gold) VALUES (15.00, 50000.00);

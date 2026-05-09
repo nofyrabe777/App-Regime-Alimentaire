@@ -8,7 +8,10 @@ use App\Models\WalletModel;
 use CodeIgniter\Controller;
 
 class InscriptionController extends Controller{
-    
+    public function index(){
+        return view('inscription_view');
+    }    
+
     public function Identity(){
         $UtilistaterModel = new UtilisateurModel();
         $data=[
@@ -29,7 +32,7 @@ class InscriptionController extends Controller{
             
             session()->set('new_UserID', $userId); 
             
-            return redirect()->to('/inscriptionIdentite');
+            return redirect()->to('/inscription-sante');
         }
     }
 

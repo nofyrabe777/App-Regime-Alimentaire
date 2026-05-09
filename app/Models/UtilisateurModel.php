@@ -20,7 +20,7 @@ class UtilisateurModel extends Model{
         $user = $this->where('email',$email)->first();
         if($user){
             if (password_verify($mot_de_passe,$user['mot_de_passe'])) {
-                return $user['nom'];
+                return $user;
             }
         }
         return null;
