@@ -194,12 +194,20 @@ Interface principale après connexion, affichant la solution personnalisée.
 
 porte monnaie une simple demande de code et inscrire le montant donc update de la somme 
 
-## Activation du projet dans le conteneur global_php_app : 
+## Activation du projet dans le conteneur global_php_app : vérification des dépendences installer 
 ```bash
-root@bc03a452ee58:/var/www/html# php -d display_errors=1 -S 0.0.0.0:8080 -t public
-[Sat May  9 21:14:20 2026] PHP 8.2.31 Development Server (http://0.0.0.0:8080) started
+root@bc03a452ee58:/var/www/html# 
+php -v
+php -m
+composer --version
 
+php spark #si il ne retourne rien fait ceux la dans le terminal
+rm -rf vendor
+rm composer.lock
 
+COMPOSER_PROCESS_TIMEOUT=5000 composer install --no-dev --prefer-dist --no-scripts
+# démarrage du truc 
+php spark 
 ```
 <br>
 
