@@ -25,3 +25,4 @@ INSERT INTO code_recharge (valeur_code, montant, est_utilise) VALUES
 
 -- Config Admin
 INSERT INTO configuration_remise (pourcentage_remise, prix_option_gold) VALUES (15.00, 50000.00);
+ 

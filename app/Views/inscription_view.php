@@ -9,7 +9,7 @@
     <div class="container mt-5">
         <div class="card shadow p-4 col-md-6 mx-auto">
             <h3>Créer un compte</h3>
-            <form id="identityForm">
+            <form id="identityForm" action="<? site_url('register-identity') ?>" method="post">
                 <input type="text" name="nom" class="form-control mb-2" placeholder="Nom complet" required>
                 <input type="email" name="email" class="form-control mb-2" placeholder="Email" required>
                 <input type="password" name="mot_de_passe" class="form-control mb-2" placeholder="Mot de passe" required>

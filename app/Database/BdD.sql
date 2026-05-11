@@ -85,7 +85,7 @@ CREATE TABLE code_recharge (
     est_utilise BOOLEAN DEFAULT FALSE
 ) ENGINE=InnoDB;
 
--- 8. Paramètres Système
+-- 8. Paramètres Système 
 CREATE TABLE configuration_remise (
     id_config INT AUTO_INCREMENT PRIMARY KEY,
     pourcentage_remise DECIMAL(5,2) DEFAULT 15.00,

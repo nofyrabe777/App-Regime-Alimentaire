@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5 text-center">
         <h3>Dites-nous en plus sur vous</h3>
-        <form action="<?= site_url('register-healthy') ?>" method="POST" class="col-md-4 mx-auto">
+        <form action="<?= site_url('register-healthy') ?>" method="post" class="col-md-4 mx-auto">
             <div class="input-group mb-3">
                 <input type="number" step="0.01" name="taille" class="form-control" placeholder="Taille (m)" required>
                 <span class="input-group-text">m</span>
