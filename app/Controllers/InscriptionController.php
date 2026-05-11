@@ -12,6 +12,16 @@ class InscriptionController extends Controller{
         return view('inscription_view');
     }    
 
+    public function viewHealth(){
+        return view('health_view');
+    }
+
+    public function viewLogin(){
+        return view('login_view');
+    }
+
+
+
     public function Identity(){
         $UtilistaterModel = new UtilisateurModel();
         $data=[
@@ -64,6 +74,6 @@ class InscriptionController extends Controller{
 
     public function log_out(){
         session_destroy();
-        return redirect()->to('/inscription');
+        return redirect()->to('/');
     }
 }

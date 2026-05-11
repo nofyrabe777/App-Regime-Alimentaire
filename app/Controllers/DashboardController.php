@@ -9,6 +9,15 @@ use App\Models\WalletModel;
 use CodeIgniter\Controller;
 
 class DashboardController extends Controller{
+
+    
+    public function viewDash(){
+        if(session()->get('LoginID')){
+            return view('welcome_message');
+        }
+        return view('inscription_view');
+    }
+
     public function index() {
         // 1. Sécurité : Vérifier si l'utilisateur est connecté
         $userId = session()->get('LoginID');

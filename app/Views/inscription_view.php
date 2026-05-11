@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
-</head>
+</head> 
 <body>
     <div class="container mt-5">
         <div class="card shadow p-4 col-md-6 mx-auto">

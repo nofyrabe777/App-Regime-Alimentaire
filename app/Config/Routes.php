@@ -5,7 +5,7 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */ 
-//$routes->get('/', 'Home::index');
+//$routes->get('/', 'Home::index'); 
 
 //inscription et login
 $routes->get('/','InscriptionController::index');
@@ -20,5 +20,5 @@ $routes->get('/logout', 'InscriptionController::log_out');
 
 
 // test dahsboard : 
-$routes->get('dashboard', 'DashboardController::index');
+$routes->get('dashboard', 'DashboardController::viewDash');
 $routes->get('success', 'DashboardController::success'); // Page de réussite
